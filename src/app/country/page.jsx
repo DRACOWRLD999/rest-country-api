@@ -1,14 +1,22 @@
+'use client';
 import React from 'react'
+import { useSearchParams } from 'next/navigation';
+import { CountryDataProvider } from '../components/country-data';
+import CountryDetails from '../components/country-detaills';
+import Back from '../components/back-btn';
 
-export default function Country(props) {
+export default function CountryPage() {
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name');
+
   return (
-    <main className="flex flex-col min-h-screen bg-zinc-50 ">
-      <div className='grid lg:grid-cols-2 sm:grid-cols-1'>
-        <div>
-          <img src={props.country} alt="country name" />
-          
-        </div>
+    <main className='bg-zinc-50'>
+      <div>
+        <Back />
       </div>
+      <CountryDataProvider name={name}>
+        <CountryDetails />
+      </CountryDataProvider>
     </main>
-  )
+  );
 }

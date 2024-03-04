@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Card from "./components/card";
 import Filter from "./components/filter-box";
 import Search from "./components/search-field";
@@ -12,7 +13,7 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-row justify-evenly bg-zinc-50">
-      {/* <div className="mx-20 p-2">
+      <div className="mx-20 p-2">
         <div className="bg-zinc-50 flex flex-row">
           <Search />
           <div className="absolute right-1 bg-zinc-50 h-16">
@@ -23,7 +24,8 @@ export default async function Home() {
 
       <div className="grid grid-cols-4 gap-x-16">
         {cards.map((card, index) => (
-          <Card
+          <Link href={`/country?name=${card.name.common}`} key={index}>
+              <Card
             key={index}
             image={card.flags.png}
             country={card.name.common}
@@ -31,10 +33,10 @@ export default async function Home() {
             region={card.region}
             capital={card.capital}
           />
+          </Link>
         ))}
       </div>
-      </div> */}
-      <Country />
+      </div>
     </main>
   );
 }
